@@ -40,6 +40,72 @@ void print(Node *head){
     
 }
 }
+Node *deleteHead(Node *head){
+    if(head==NULL||head->next==nullptr){
+        return NULL;
+    }
+    Node *temp=head;
+    head=head->next;
+    head->back=nullptr;
+    temp->next=nullptr;
+    delete temp;
+    return head;
+
+
+}
+Node *deleteTail(Node *head){
+    if(head==NULL||head->next==nullptr){
+        return NULL;
+    }
+    Node * tail=head;
+    while(tail->next!=nullptr){
+        tail=tail->next;
+    }
+    Node * newtail=tail->back;
+    newtail->next=nullptr;
+    tail->back=nullptr;
+    delete tail;
+    return head;
+    
+}
+//delete kth node
+Node *deleteKth(Node *head,int k){
+    if(head==NULL){
+        return NULL;
+
+    }
+    int cnt=0;
+    Node *temp=head;
+    while(temp!=NULL){
+         cnt++;
+    if(cnt==k) break;
+
+
+    
+   
+    temp=temp->next;
+}
+Node * front=temp->next;
+Node * prev=temp->back;
+front->back=prev;
+prev->next=front;
+delete temp;
+return head;
+}
+//pointer to a node is given and we have to delete that node
+void deletenode(Node * temp){
+    Node * front=temp->next;
+    Node * prev=temp->back;
+    front->back=prev;
+    prev->next=front;
+    temp->next=nullptr;
+    temp->back=nullptr;
+    delete temp;
+
+}
+    
+ 
+    
 int main(){
     vector<int>arr={1,2,3,4,5};
     Node *head=convertarr2Dll(arr);
